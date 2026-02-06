@@ -1,3 +1,4 @@
+<!-- project-three.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +26,19 @@
       <nav class="site-nav" aria-label="Primary">
         <ul>
           <li><a href="index.html">Resume</a></li>
-          <li><a href="project-one.html">Project 1</a></li>
-          <li><a href="project-two.html">Project 2</a></li>
-          <li><a href="project-three.html" aria-current="page">Project 3</a></li>
-          <li><a href="project-four.html">Project 4</a></li>
+
+          <li class="nav-group">
+            <button class="nav-group-btn" type="button" aria-label="Open projects menu">
+              Projects <span class="chev" aria-hidden="true">▾</span>
+            </button>
+
+            <ul class="nav-dropdown" aria-label="Projects">
+              <li><a href="project-one.html">Project 1</a></li>
+              <li><a href="project-two.html">Project 2</a></li>
+              <li><a href="project-three.html" aria-current="page">Project 3</a></li>
+              <li><a href="project-four.html">Project 4</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
     </div>
