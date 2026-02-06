@@ -2,19 +2,17 @@
 /* =========
    Resume Site CSS (Joshua Jaggernauth)
    Polished + Professional:
-   1) Header gradient
-   2) Section title accent underline
-   3) Subtle card hover lift (hover-capable devices)
-   4) Tagline styling (optional HTML line)
-   5) Softer background depth
-   + Option C) Header shrink-on-scroll (CSS scroll-driven animation when supported)
-
-   Notes:
+   - Header gradient (depth + premium feel)
+   - Softer background depth
+   - Section title accent underline
+   - Subtle card hover lift (hover-capable devices)
+   - Tagline styling (add <p class="hero-tagline"> under your name in HTML)
    - Sticky header
    - Projects menu expands RIGHT with animation (hover-safe)
    - Mobile fallback: dropdown opens below
    - Responsive: mobile-first, desktop grid at 900px+
    - Accessibility: skip link, focus styles, reduced motion support
+   - Header shrink-on-scroll: CSS scroll-driven animation when supported
    ========= */
 
 /* ===== Base reset / defaults ===== */
@@ -26,7 +24,8 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.6;
   color: #1b1f2a;
-  /* (5) Softer background depth */
+
+  /* Slight background depth (still professional) */
   background: radial-gradient(circle at top, #ffffff, #f4f6fb);
 }
 
@@ -56,7 +55,7 @@ a:hover { text-decoration: underline; }
 /* Make anchor jumps nicer with sticky header */
 #main { scroll-margin-top: 7.5rem; }
 
-/* Visible keyboard focus (keeps it professional but accessible) */
+/* Visible keyboard focus */
 :focus-visible {
   outline: 3px solid rgba(27, 79, 214, 0.55);
   outline-offset: 3px;
@@ -65,26 +64,18 @@ a:hover { text-decoration: underline; }
 
 /* ===== Header ===== */
 .site-header {
-  /* (1) Header gradient */
+  /* Header gradient */
   background: linear-gradient(135deg, #0f172a, #16234a);
   color: #ffffff;
 
-  /* We’ll animate these with scroll when supported */
   padding: 1.25rem 0 1rem;
-
   border-bottom: 4px solid #1b4fd6;
 
   position: sticky;
   top: 0;
   z-index: 1000;
 
-  /* Smooth transitions when the browser applies the scroll animation / fallbacks */
   transition: padding 180ms ease, box-shadow 180ms ease, border-bottom-color 180ms ease;
-}
-
-/* Optional: a slightly stronger separation once you start scrolling (scroll anim adds it too) */
-.site-header.is-scrolled {
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
 }
 
 .site-title {
@@ -93,7 +84,7 @@ a:hover { text-decoration: underline; }
   letter-spacing: 0.2px;
 }
 
-/* (4) Tagline styling (Add this line under your name in HTML if you want)
+/* Tagline styling (add this HTML under your name)
    <p class="hero-tagline">Information Technology Student • Software & Web Applications</p>
 */
 .hero-tagline {
@@ -190,7 +181,7 @@ a:hover { text-decoration: underline; }
 .nav-dropdown {
   position: absolute;
   left: 100%;
-  margin-left: 0.35rem;          /* visual spacing without a hover gap */
+  margin-left: 0.35rem;
   top: 50%;
 
   transform: translateY(-50%) scaleX(0.96);
@@ -198,7 +189,6 @@ a:hover { text-decoration: underline; }
 
   min-width: 520px;
 
-  /* keep aligned */
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
@@ -211,7 +201,7 @@ a:hover { text-decoration: underline; }
   display: flex;
   gap: 0.5rem;
 
-  /* Invisible hover bridge: prevents closing while moving mouse to the flyout */
+  /* Invisible hover bridge */
   padding-left: 0.35rem;
 
   opacity: 0;
@@ -307,7 +297,7 @@ h2 {
   font-size: 1.25rem;
   color: #0f172a;
 
-  /* (2) Accent underline */
+  /* Accent underline */
   position: relative;
   padding-bottom: 0.35rem;
 }
@@ -343,7 +333,7 @@ p { margin: 0.4rem 0 0.75rem; }
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
-/* (3) Subtle card hover lift — only on hover-capable devices */
+/* Subtle card hover lift — only on hover-capable devices */
 @media (hover: hover) and (pointer: fine) {
   .section,
   .item,
@@ -427,10 +417,7 @@ li { margin: 0.35rem 0; }
   main.container .project { grid-column: 1 / -1; }
 }
 
-/* ===== Option C: Shrink header slightly on scroll (CSS scroll-driven) =====
-   Works in modern Chromium-based browsers (and some others as support grows).
-   Falls back gracefully: header stays normal size where unsupported.
-*/
+/* ===== Header shrink-on-scroll (CSS scroll-driven, when supported) ===== */
 @supports (animation-timeline: scroll()) {
   .site-header {
     animation-name: header-shrink;
@@ -465,9 +452,7 @@ li { margin: 0.35rem 0; }
   }
 
   @supports (animation-timeline: scroll()) {
-    .site-header {
-      animation: none !important;
-    }
+    .site-header { animation: none !important; }
   }
 
   @media (hover: hover) and (pointer: fine) {
