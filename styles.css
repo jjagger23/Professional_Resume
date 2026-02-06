@@ -1,18 +1,15 @@
+/* styles.css */
 /* =========
    Resume Site CSS (Joshua Jaggernauth)
-   - Mobile-first layout (tested for ~412px width)
-   - Desktop layout switches at 900px+ (great for 1920px)
-   - No frameworks, just clean CSS
+   - Sticky header
+   - Projects menu expands to the RIGHT with animation (flush with header pills)
+   - Mobile fallback: dropdown opens below
+   - Mobile-first layout; desktop grid at 900px+
    ========= */
 
 /* ----- Base reset / defaults ----- */
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -22,34 +19,15 @@ body {
   background: #f6f7fb;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+img { max-width: 100%; height: auto; display: block; }
 
-a {
-  color: #1b4fd6;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
+a { color: #1b4fd6; text-decoration: none; }
+a:hover { text-decoration: underline; }
 
 /* ----- Layout helpers ----- */
-.container {
-  width: min(1050px, calc(100% - 2rem));
-  margin: 0 auto;
-}
-
-.section {
-  margin: 1.25rem 0;
-}
-
-.subsection {
-  margin-top: 1rem;
-}
+.container { width: min(1050px, calc(100% - 2rem)); margin: 0 auto; }
+.section { margin: 1.25rem 0; }
+.subsection { margin-top: 1rem; }
 
 /* ----- Skip link (accessibility) ----- */
 .skip-link {
@@ -60,20 +38,23 @@ a:hover {
   color: #ffffff;
   padding: 0.7rem 1rem;
   border-radius: 10px;
-  z-index: 50;
+  z-index: 2000;
 }
+.skip-link:focus { left: 1rem; top: 1rem; }
 
-.skip-link:focus {
-  left: 1rem;
-  top: 1rem;
-}
+/* Make anchor jumps nicer with sticky header */
+#main { scroll-margin-top: 7.5rem; }
 
 /* ===== Header ===== */
 .site-header {
-  background: #0f172a;            /* deep navy */
+  background: #0f172a;
   color: #ffffff;
   padding: 1.25rem 0 1rem;
   border-bottom: 4px solid #1b4fd6;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .site-title {
@@ -84,7 +65,7 @@ a:hover {
 
 .contact {
   margin: 0.35rem 0 0.9rem;
-  font-style: normal;             /* address tag usually italic by default */
+  font-style: normal;
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 0.7rem;
@@ -97,11 +78,9 @@ a:hover {
   text-underline-offset: 3px;
 }
 
-.contact span[aria-hidden="true"] {
-  color: rgba(255, 255, 255, 0.6);
-}
+.contact span[aria-hidden="true"] { color: rgba(255, 255, 255, 0.6); }
 
-/* Nav */
+/* ===== Nav ===== */
 .site-nav ul {
   list-style: none;
   margin: 0;
@@ -110,15 +89,17 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  align-items: center;
 }
 
+/* pill links */
 .site-nav a {
   display: inline-block;
-  padding: 0.45rem 0.75rem;
+  padding: 0.45rem 0.85rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
-  transition: background 160ms ease, transform 160ms ease;
+  transition: background 180ms ease, transform 180ms ease;
 }
 
 .site-nav a:hover {
@@ -132,12 +113,132 @@ a:hover {
   font-weight: 600;
 }
 
-/* ===== Main content ===== */
-main {
-  padding: 1.25rem 0 2.25rem;
+/* Projects group */
+.nav-group { position: relative; }
+
+/* Projects button styled like pills */
+.nav-group-btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font: inherit;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  transition: background 180ms ease, transform 180ms ease;
 }
 
-/* Headings */
+.nav-group-btn:hover {
+  background: rgba(255, 255, 255, 0.20);
+  transform: translateY(-1px);
+}
+
+.nav-group .chev {
+  display: inline-block;
+  transition: transform 180ms ease;
+}
+
+/* RIGHT-expanding menu, flush with header pills */
+.nav-dropdown {
+  position: absolute;
+  left: calc(100% + 0.5rem);
+  top: 50%;
+
+  transform: translateY(-50%) scaleX(0.96);
+  transform-origin: left center;
+
+  min-width: 520px;
+  padding: 0;
+  margin: 0;
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+
+  display: flex;
+  gap: 0.5rem;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 170ms ease, transform 170ms ease;
+}
+
+.nav-dropdown li { list-style: none; margin: 0; }
+
+.nav-dropdown a {
+  width: auto;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  color: #ffffff;
+  transition: background 180ms ease, transform 180ms ease;
+  display: inline-block;
+}
+
+.nav-dropdown a:hover {
+  background: rgba(255, 255, 255, 0.20);
+  transform: translateY(-1px);
+}
+
+.nav-dropdown a[aria-current="page"] {
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* open on hover or keyboard focus */
+.nav-group:hover .nav-dropdown,
+.nav-group:focus-within .nav-dropdown {
+  opacity: 1;
+  transform: translateY(-50%) scaleX(1);
+  pointer-events: auto;
+}
+
+.nav-group:hover .chev,
+.nav-group:focus-within .chev {
+  transform: rotate(180deg);
+}
+
+/* Mobile fallback: dropdown opens below button */
+@media (max-width: 600px) {
+  .nav-dropdown {
+    left: 0;
+    top: calc(100% + 0.55rem);
+
+    transform: translateY(-6px) scale(0.98);
+    transform-origin: top left;
+
+    min-width: 220px;
+    padding: 0.45rem;
+
+    background: rgba(15, 23, 42, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .nav-dropdown a { width: 100%; }
+  .nav-group:hover .nav-dropdown,
+  .nav-group:focus-within .nav-dropdown {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== Main content ===== */
+main { padding: 1.25rem 0 2.25rem; }
+
 h2 {
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
@@ -150,11 +251,9 @@ h3 {
   color: #111827;
 }
 
-p {
-  margin: 0.4rem 0 0.75rem;
-}
+p { margin: 0.4rem 0 0.75rem; }
 
-/* Cards / panels */
+/* Cards */
 .section,
 .item,
 .project-preview,
@@ -166,46 +265,25 @@ p {
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
-/* List spacing */
-ul {
-  margin: 0.4rem 0 0 1.2rem;
-  padding: 0;
-}
+/* Lists */
+ul { margin: 0.4rem 0 0 1.2rem; padding: 0; }
+li { margin: 0.35rem 0; }
 
-li {
-  margin: 0.35rem 0;
-}
-
-/* Experience item header */
+/* Experience header */
 .item-header {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
 }
+.item-subtitle { margin: 0; color: #4b5563; }
 
-.item-subtitle {
-  margin: 0;
-  color: #4b5563;
-}
-
-/* Projects on resume page */
-.project-preview h3 {
-  margin-top: 0;
-}
-
-.project-preview p {
-  margin-bottom: 0;
-}
+/* Project preview */
+.project-preview h3 { margin-top: 0; }
+.project-preview p { margin-bottom: 0; }
 
 /* Project page header */
-.page-header {
-  margin: 1.25rem 0;
-}
-
-.page-intro {
-  margin: 0.35rem 0 0;
-  color: #374151;
-}
+.page-header { margin: 1.25rem 0; }
+.page-intro { margin: 0.35rem 0 0; color: #374151; }
 
 /* Project figure */
 .project-figure {
@@ -214,11 +292,7 @@ li {
   overflow: hidden;
   border: 1px solid #e6e8f2;
 }
-
-.project-figure img {
-  width: 100%;
-}
-
+.project-figure img { width: 100%; }
 .project-figure figcaption {
   padding: 0.7rem 0.9rem;
   background: #f8fafc;
@@ -227,39 +301,17 @@ li {
 }
 
 /* Footer */
-.site-footer {
-  padding: 1.5rem 0 2rem;
-}
+.site-footer { padding: 1.5rem 0 2rem; }
+.site-footer p { margin: 0; text-align: center; color: #4b5563; }
+.site-footer a { color: #1b4fd6; }
 
-.site-footer p {
-  margin: 0;
-  text-align: center;
-  color: #4b5563;
-}
-
-.site-footer a {
-  color: #1b4fd6;
-}
-
-/* =========
-   Responsive Layout (Desktop / Laptop)
-   - Mobile-first by default
-   - Switch to a two-column layout on index.html at 900px+
-   ========= */
+/* Desktop layout */
 @media (min-width: 900px) {
+  .site-title { font-size: 2rem; }
+  main { padding: 2rem 0 3rem; }
+  .site-header { padding: 1.1rem 0 0.9rem; }
 
-  /* Slightly more breathing room on big screens */
-  .site-title {
-    font-size: 2rem;
-  }
-
-  main {
-    padding: 2rem 0 3rem;
-  }
-
-  /* Create a "resume layout" grid only for the resume page:
-     The resume page uses multiple .section blocks, and we want
-     a nicer two-column flow on desktop without changing the HTML. */
+  /* Two-column flow on resume page */
   main.container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -267,30 +319,15 @@ li {
     align-items: start;
   }
 
-  /* Make the first section (Objective) span full width */
-  main.container > .section:first-of-type {
-    grid-column: 1 / -1;
-  }
+  /* Objective spans full width */
+  main.container > .section:first-of-type { grid-column: 1 / -1; }
 
-  /* Make Projects span full width for better readability */
-  #projects-title {
-    scroll-margin-top: 1.2rem;
-  }
+  /* Projects spans full width (4th section in current index.html order) */
+  main.container > .section:nth-of-type(4) { grid-column: 1 / -1; }
 
-  /* The Projects section is the 4th section in your current index.html layout.
-     If you reorder sections later, you can remove this rule or adjust it. */
-  main.container > .section:nth-of-type(4) {
-    grid-column: 1 / -1;
-  }
+  /* Skills spans full width */
+  main.container > .section:last-of-type { grid-column: 1 / -1; }
 
-  /* Make Skills span full width */
-  main.container > .section:last-of-type {
-    grid-column: 1 / -1;
-  }
-
-  /* Project pages should NOT be forced into columns (they have .page-header + .project).
-     This rule keeps project pages in a normal single-column layout. */
-  main.container .project {
-    grid-column: 1 / -1;
-  }
+  /* Project pages stay readable */
+  main.container .project { grid-column: 1 / -1; }
 }
