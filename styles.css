@@ -1,1 +1,296 @@
+/* =========
+   Resume Site CSS (Joshua Jaggernauth)
+   - Mobile-first layout (tested for ~412px width)
+   - Desktop layout switches at 900px+ (great for 1920px)
+   - No frameworks, just clean CSS
+   ========= */
 
+/* ----- Base reset / defaults ----- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  color: #1b1f2a;
+  background: #f6f7fb;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: #1b4fd6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ----- Layout helpers ----- */
+.container {
+  width: min(1050px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.section {
+  margin: 1.25rem 0;
+}
+
+.subsection {
+  margin-top: 1rem;
+}
+
+/* ----- Skip link (accessibility) ----- */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: #111827;
+  color: #ffffff;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  z-index: 50;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ===== Header ===== */
+.site-header {
+  background: #0f172a;            /* deep navy */
+  color: #ffffff;
+  padding: 1.25rem 0 1rem;
+  border-bottom: 4px solid #1b4fd6;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.2px;
+}
+
+.contact {
+  margin: 0.35rem 0 0.9rem;
+  font-style: normal;             /* address tag usually italic by default */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.7rem;
+  align-items: center;
+}
+
+.contact a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact span[aria-hidden="true"] {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Nav */
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.site-nav a:hover {
+  background: rgba(255, 255, 255, 0.20);
+  transform: translateY(-1px);
+}
+
+.site-nav a[aria-current="page"] {
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* ===== Main content ===== */
+main {
+  padding: 1.25rem 0 2.25rem;
+}
+
+/* Headings */
+h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: #0f172a;
+}
+
+h3 {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 1.05rem;
+  color: #111827;
+}
+
+p {
+  margin: 0.4rem 0 0.75rem;
+}
+
+/* Cards / panels */
+.section,
+.item,
+.project-preview,
+.project {
+  background: #ffffff;
+  border: 1px solid #e6e8f2;
+  border-radius: 14px;
+  padding: 1rem 1rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+/* List spacing */
+ul {
+  margin: 0.4rem 0 0 1.2rem;
+  padding: 0;
+}
+
+li {
+  margin: 0.35rem 0;
+}
+
+/* Experience item header */
+.item-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.item-subtitle {
+  margin: 0;
+  color: #4b5563;
+}
+
+/* Projects on resume page */
+.project-preview h3 {
+  margin-top: 0;
+}
+
+.project-preview p {
+  margin-bottom: 0;
+}
+
+/* Project page header */
+.page-header {
+  margin: 1.25rem 0;
+}
+
+.page-intro {
+  margin: 0.35rem 0 0;
+  color: #374151;
+}
+
+/* Project figure */
+.project-figure {
+  margin: 0 0 1rem;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e6e8f2;
+}
+
+.project-figure img {
+  width: 100%;
+}
+
+.project-figure figcaption {
+  padding: 0.7rem 0.9rem;
+  background: #f8fafc;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+/* Footer */
+.site-footer {
+  padding: 1.5rem 0 2rem;
+}
+
+.site-footer p {
+  margin: 0;
+  text-align: center;
+  color: #4b5563;
+}
+
+.site-footer a {
+  color: #1b4fd6;
+}
+
+/* =========
+   Responsive Layout (Desktop / Laptop)
+   - Mobile-first by default
+   - Switch to a two-column layout on index.html at 900px+
+   ========= */
+@media (min-width: 900px) {
+
+  /* Slightly more breathing room on big screens */
+  .site-title {
+    font-size: 2rem;
+  }
+
+  main {
+    padding: 2rem 0 3rem;
+  }
+
+  /* Create a "resume layout" grid only for the resume page:
+     The resume page uses multiple .section blocks, and we want
+     a nicer two-column flow on desktop without changing the HTML. */
+  main.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  /* Make the first section (Objective) span full width */
+  main.container > .section:first-of-type {
+    grid-column: 1 / -1;
+  }
+
+  /* Make Projects span full width for better readability */
+  #projects-title {
+    scroll-margin-top: 1.2rem;
+  }
+
+  /* The Projects section is the 4th section in your current index.html layout.
+     If you reorder sections later, you can remove this rule or adjust it. */
+  main.container > .section:nth-of-type(4) {
+    grid-column: 1 / -1;
+  }
+
+  /* Make Skills span full width */
+  main.container > .section:last-of-type {
+    grid-column: 1 / -1;
+  }
+
+  /* Project pages should NOT be forced into columns (they have .page-header + .project).
+     This rule keeps project pages in a normal single-column layout. */
+  main.container .project {
+    grid-column: 1 / -1;
+  }
+}
