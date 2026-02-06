@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project 4 | Three-Tier Web App (Servlets/JSP + MySQL)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">Joshua Jaggernauth</h1>
+
+      <address class="contact">
+        <a href="mailto:YOUR_UCF_EMAIL@ucf.edu">YOUR_UCF_EMAIL@ucf.edu</a>
+        <span aria-hidden="true">•</span>
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noopener">
+          LinkedIn Profile
+        </a>
+      </address>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Resume</a></li>
+          <li><a href="project-one.html">Project 1</a></li>
+          <li><a href="project-two.html">Project 2</a></li>
+          <li><a href="project-three.html">Project 3</a></li>
+          <li><a href="project-four.html" aria-current="page">Project 4</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <header class="page-header">
+      <h2>Project 4: Three-Tier Web App (Servlets/JSP + MySQL)</h2>
+      <p class="page-intro">
+        A three-tier enterprise-style web application deployed on Tomcat that uses Servlets/JSP
+        for the middle tier and MySQL for persistent data storage.
+      </p>
+    </header>
+
+    <article class="project">
+      <figure class="project-figure">
+        <img
+          src="images/project4.png"
+          alt="Screenshot of the three-tier web application interface (Tomcat, Servlets/JSP, MySQL)"
+          width="1200"
+          height="675"
+        />
+        <figcaption>
+          Three-tier distributed web application using Tomcat (Servlets/JSP) and MySQL.
+        </figcaption>
+      </figure>
+
+      <section class="section" aria-labelledby="description-title">
+        <h3 id="description-title">Project Description</h3>
+        <p>
+          This project is a three-tier web application deployed on Apache Tomcat. The system authenticates users
+          against a credentials database and routes them to role-based interfaces (such as root, client, data entry,
+          and accountant). Server-side servlets handle requests, execute SQL commands, and perform insert operations
+          using prepared statements. The application also supports running stored procedure reports through callable
+          statements, demonstrating a complete workflow from web UI to database execution.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="skills-title">
+        <h3 id="skills-title">Skills Learned / Used</h3>
+        <ul>
+          <li>Three-tier architecture: browser UI → servlets/JSP → MySQL database</li>
+          <li>Role-based authentication and user routing</li>
+          <li>Server-side programming with Java Servlets and JSP</li>
+          <li>PreparedStatements for secure data entry operations</li>
+          <li>CallableStatements and stored procedures for generating reports</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="index.html">Back to Resume</a></p>
+    </div>
+  </footer>
+</body>
+</html>
