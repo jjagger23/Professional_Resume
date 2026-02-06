@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project 3 | Two-Tier Client-Server App (JDBC + MySQL)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">Joshua Jaggernauth</h1>
+
+      <address class="contact">
+        <a href="mailto:YOUR_UCF_EMAIL@ucf.edu">YOUR_UCF_EMAIL@ucf.edu</a>
+        <span aria-hidden="true">•</span>
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noopener">
+          LinkedIn Profile
+        </a>
+      </address>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Resume</a></li>
+          <li><a href="project-one.html">Project 1</a></li>
+          <li><a href="project-two.html">Project 2</a></li>
+          <li><a href="project-three.html" aria-current="page">Project 3</a></li>
+          <li><a href="project-four.html">Project 4</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <header class="page-header">
+      <h2>Project 3: Two-Tier Client-Server App (JDBC + MySQL)</h2>
+      <p class="page-intro">
+        A Java GUI application that connects to a MySQL database through JDBC and enforces user permissions
+        when executing SQL operations.
+      </p>
+    </header>
+
+    <article class="project">
+      <figure class="project-figure">
+        <img
+          src="images/project3.png"
+          alt="Screenshot of the Project 3 Java GUI client connected to MySQL"
+          width="1200"
+          height="675"
+        />
+        <figcaption>
+          Two-tier Java client application connecting to MySQL using JDBC.
+        </figcaption>
+      </figure>
+
+      <section class="section" aria-labelledby="description-title">
+        <h3 id="description-title">Project Description</h3>
+        <p>
+          This project is a two-tier Java application with a GUI front-end that connects to a MySQL server
+          using JDBC. Users authenticate through the interface and can execute SQL commands depending on
+          their access level. The application separates query operations from update operations and tracks
+          successful actions by recording them in an operations log database, supporting basic auditing and
+          monitoring of user activity.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="skills-title">
+        <h3 id="skills-title">Skills Learned / Used</h3>
+        <ul>
+          <li>Connecting Java applications to MySQL using JDBC</li>
+          <li>Executing SQL queries vs SQL updates safely and correctly</li>
+          <li>Role-based permissions (restricting functionality by user access)</li>
+          <li>Using properties/config files for database connection settings</li>
+          <li>Logging and monitoring successful database operations</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="index.html">Back to Resume</a></p>
+    </div>
+  </footer>
+</body>
+</html>
