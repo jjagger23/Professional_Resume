@@ -1,5 +1,8 @@
 # Joshua Jaggernauth – Professional Resume Website
 
+## Professional Resume Live Page 
+https://jjagger23.github.io/Professional_Resume/ 
+
 This repository contains my responsive resume and project portfolio website.
 
 The site highlights:
